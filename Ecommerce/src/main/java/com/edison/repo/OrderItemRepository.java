@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.edison.entity.OrderItem;
 
-public interface OrderItemRepository extends JpaRepository<OrderItem,Integer>{
+public interface OrderItemRepository extends JpaRepository<OrderItem,Long>{
 
-	List<OrderItem> findByUserId(Long userId);
+	List<OrderItem> findByUserId(int userId);
 	
 
 }

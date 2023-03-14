@@ -1,6 +1,8 @@
 package com.edison.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -12,9 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class OrderItem {
-	
 	@Id
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
 	private int quantity;
 	
@@ -23,7 +25,11 @@ public class OrderItem {
 	private int userId;
 	
 	@ManyToOne
-	private Product product;
+	private Product productId;
+	@ManyToOne
+	private Order order;
+	
+
 	
 	
 	

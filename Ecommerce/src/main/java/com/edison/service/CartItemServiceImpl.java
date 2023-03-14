@@ -3,6 +3,7 @@ package com.edison.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.edison.entity.Cart;
 import com.edison.entity.CartItem;
@@ -12,6 +13,7 @@ import com.edison.repo.CartItemRepo;
 import com.edison.repo.CartRepository;
 import com.edison.repo.ProductRepository;
 
+@Service
 public class CartItemServiceImpl implements CartItemService {
 	
 	@Autowired

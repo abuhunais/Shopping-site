@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 //@ApiModel(value = "Model class for User.")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 //	@ApiModelProperty(value = "userId of the User.")
 	private int userId;

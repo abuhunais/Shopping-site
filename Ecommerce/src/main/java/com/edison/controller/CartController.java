@@ -20,7 +20,7 @@ import com.edison.service.CartService;
 public class CartController {
 	
 	@Autowired
-	CartItemService cartItemService;
+	private CartItemService cartItemService;
 
 	@Autowired
 	private CartService cartService;

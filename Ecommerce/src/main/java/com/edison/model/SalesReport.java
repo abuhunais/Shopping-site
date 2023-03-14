@@ -1,7 +1,5 @@
 package com.edison.model;
 
-import java.sql.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,9 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SalesReport {
 	
-	private Date startDate;
 
-	private Date endDate;
+	private String startDate;
+
+	private String endDate;
 
 	private double totalSales;
 

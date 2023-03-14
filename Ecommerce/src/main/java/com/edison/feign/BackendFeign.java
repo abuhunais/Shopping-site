@@ -10,7 +10,7 @@ import com.edison.model.AuthenticateRequest;
 import com.edison.model.AuthenticationResponse;
 import com.edison.model.ValidateResponse;
 
-@FeignClient(name="backendFeign",url="localhost:8080/auth")
+@FeignClient(name="backendFeign",url="localhost:8081/auth")
 public interface BackendFeign {
 	@PostMapping("/validate")
 	public AuthenticationResponse validateJwt(@RequestHeader("Authorization") String jwtRequestHeader);

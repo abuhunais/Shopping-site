@@ -1,5 +1,7 @@
 package com.edison.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,10 +20,10 @@ public class CartItem{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int quantity;
-	
+	@JsonIgnore
 	@ManyToOne
 	private Cart cart;
-
+   
 	@ManyToOne
 	private Product product;
 

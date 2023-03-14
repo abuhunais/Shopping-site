@@ -1,5 +1,7 @@
 package com.edison.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import com.edison.entity.Cart;
 import com.edison.entity.Order;
 import com.edison.entity.OrderItem;
 import com.edison.model.OrderModel;
+import com.edison.model.OrderStatus;
 import com.edison.repo.CartRepository;
 import com.edison.repo.OrderItemRepository;
 //import com.edison.model.SalesReport;
@@ -60,12 +63,13 @@ public class OrderService {
 	public String createOrder(OrderModel Item ) {
 		Order order = new Order();
 		order.setUserId(Item.getUserId());
-		OrderItem orderItem = orderItemService.setOrderItem(Item) ;
+//		OrderItem orderItem = orderItemService.setOrderItem(Item) ;
 		List<OrderItem> items = new ArrayList<>();
-		items.add(orderItem);
+		items.add(orderItemService.setOrderItem(Item));
 		order.setOrderItems(items);
-		order.setTotalPrice(orderItem.getPrice());
-		order.setOrderDate(Item.getDate());
+		order.setTotalPrice(orderItemService.setOrderItem(Item).getPrice());
+		order.setOrderDate(LocalDate.now());
+		order.setStatus(OrderStatus.PROCESSING.toString());
 		orderRepository.save(order);
 		return "order created";
 	}
@@ -76,7 +80,7 @@ public class OrderService {
 		Optional<Cart> cart = cartRepository.findById(CartId);
 		List<OrderItem> orderItems = orderItemService.setOrderItems(cart.get());
 		order.setOrderItems(orderItems);
-		order.setOrderDate("");
+		order.setOrderDate(LocalDate.now());
 		double total = 0;
 		for(OrderItem orditem : orderItems) {
 			total+=orditem.getPrice();

@@ -42,13 +42,14 @@ public class Product {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
-	private CartItem cartItems;
+	private List<CartItem> cartItems;
 	
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "product")
-//	private OrderItem orderItems;
-	
-	@OneToMany(mappedBy = "product")
+    @JsonIgnore
+	@OneToMany(mappedBy = "productId")
+	private List<OrderItem> orderItems;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "prodId")
 	private List<Review> reviews; 
 
 
