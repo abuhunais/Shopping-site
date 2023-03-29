@@ -63,20 +63,24 @@ public class OrderService {
 	public String createOrder(OrderModel Item ) {
 		Order order = new Order();
 		order.setUserId(Item.getUserId());
-//		OrderItem orderItem = orderItemService.setOrderItem(Item) ;
+        OrderItem orderItem = orderItemService.setOrderItem(Item) ;
 		List<OrderItem> items = new ArrayList<>();
-		items.add(orderItemService.setOrderItem(Item));
+
+		items.add(orderItem);
 		order.setOrderItems(items);
-		order.setTotalPrice(orderItemService.setOrderItem(Item).getPrice());
+		order.setTotalPrice(orderItem.getPrice());
 		order.setOrderDate(LocalDate.now());
 		order.setStatus(OrderStatus.PROCESSING.toString());
 		orderRepository.save(order);
 		return "order created";
 	}
+
+
 	
 	
 	public String createBulkOrder(Long CartId) {
 		Order order = new Order();
+	
 		Optional<Cart> cart = cartRepository.findById(CartId);
 		List<OrderItem> orderItems = orderItemService.setOrderItems(cart.get());
 		order.setOrderItems(orderItems);
@@ -84,9 +88,11 @@ public class OrderService {
 		double total = 0;
 		for(OrderItem orditem : orderItems) {
 			total+=orditem.getPrice();
+			
 		}
 		order.setTotalPrice(total);
 		order.setUserId(cart.get().getUserId());
+		order.setStatus(OrderStatus.PROCESSING.toString());
 		orderRepository.save(order);
 		return "order created";
 	}

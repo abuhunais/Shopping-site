@@ -39,6 +39,7 @@ public class CartItemServiceImpl implements CartItemService {
 		Optional<Product> product = productRepository.findById(Item.getProductId());
 		if(product.isPresent())
 			cartItem.setProduct(product.get());
+	
 		cartItem.setQuantity(Item.getQuantity());
 		cartItemRepo.save(cartItem);
 		

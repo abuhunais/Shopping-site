@@ -20,8 +20,8 @@ public class CartService {
 	@Autowired
 	private CartItemRepo cartItemRepo;
 
-	@Autowired
-	private OrderService orderService;
+//	@Autowired
+//	private OrderService orderService;
 
 	public String addItemToCart(CartItemModel Item) {
 		Cart cart = cartRepository.findByUserId(Item.getUserId());
